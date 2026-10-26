@@ -1,0 +1,98 @@
+Subsystem           | Source_instance | Source_port        | Destination_instance | Destination_port                      | Notes
+--------------------+-----------------+--------------------+----------------------+---------------------------------------+-----------------------------------------
+CPU / ROM           | u_cpu           | imem_addr[31:0]    | u_imem               | addr[31:0]                            |
+CPU / ROM           | u_cpu           | imem_req           | u_imem               | req                                   |
+CPU / ROM           | u_imem          | rdata[31:0]        | u_cpu                | imem_rdata[31:0]                      |
+CPU / ROM           | u_imem          | ready              | u_cpu                | imem_ready                            |
+CPU / bus           | u_cpu           | dmem_addr[31:0]    | u_bus                | cpu_addr[31:0]                        |
+CPU / bus           | u_cpu           | dmem_wdata[31:0]   | u_bus                | cpu_wdata[31:0]                       |
+CPU / bus           | u_cpu           | dmem_wstrb[3:0]    | u_bus                | cpu_wstrb[3:0]                        |
+CPU / bus           | u_cpu           | dmem_req           | u_bus                | cpu_req                               |
+CPU / bus           | u_cpu           | dmem_we            | u_bus                | cpu_we                                |
+CPU / bus           | u_bus           | cpu_rdata[31:0]    | u_cpu                | dmem_rdata[31:0]                      |
+CPU / bus           | u_bus           | cpu_ready          | u_cpu                | dmem_ready                            |
+CPU / bus           | u_bus           | cpu_error          | u_cpu                | dmem_error                            |
+Bus / collision     | u_bus           | collision_sel      | u_collision          | bus_sel                               |
+Bus / collision     | u_bus           | slave_addr         | u_collision          | bus_addr                              | Shared bus distributed to selected slave
+Bus / collision     | u_bus           | slave_wdata        | u_collision          | bus_wdata                             | Shared bus distributed to selected slave
+Bus / collision     | u_bus           | slave_wstrb        | u_collision          | bus_wstrb                             | Shared bus distributed to selected slave
+Bus / collision     | u_bus           | slave_we           | u_collision          | bus_we                                | Shared bus distributed to selected slave
+Bus / collision     | u_collision     | bus_rdata          | u_bus                | collision_rdata                       |
+Bus / collision     | u_collision     | bus_ready          | u_bus                | collision_ready                       |
+Bus / collision     | u_collision     | bus_error          | u_bus                | collision_error                       |
+Bus / gpio          | u_bus           | gpio_sel           | u_gpio               | bus_sel                               |
+Bus / gpio          | u_bus           | slave_addr         | u_gpio               | bus_addr                              | Shared bus distributed to selected slave
+Bus / gpio          | u_bus           | slave_wdata        | u_gpio               | bus_wdata                             | Shared bus distributed to selected slave
+Bus / gpio          | u_bus           | slave_wstrb        | u_gpio               | bus_wstrb                             | Shared bus distributed to selected slave
+Bus / gpio          | u_bus           | slave_we           | u_gpio               | bus_we                                | Shared bus distributed to selected slave
+Bus / gpio          | u_gpio          | bus_rdata          | u_bus                | gpio_rdata                            |
+Bus / gpio          | u_gpio          | bus_ready          | u_bus                | gpio_ready                            |
+Bus / gpio          | u_gpio          | bus_error          | u_bus                | gpio_error                            |
+Bus / safety        | u_bus           | safety_sel         | u_safety             | bus_sel                               |
+Bus / safety        | u_bus           | slave_addr         | u_safety             | bus_addr                              | Shared bus distributed to selected slave
+Bus / safety        | u_bus           | slave_wdata        | u_safety             | bus_wdata                             | Shared bus distributed to selected slave
+Bus / safety        | u_bus           | slave_wstrb        | u_safety             | bus_wstrb                             | Shared bus distributed to selected slave
+Bus / safety        | u_bus           | slave_we           | u_safety             | bus_we                                | Shared bus distributed to selected slave
+Bus / safety        | u_safety        | bus_rdata          | u_bus                | safety_rdata                          |
+Bus / safety        | u_safety        | bus_ready          | u_bus                | safety_ready                          |
+Bus / safety        | u_safety        | bus_error          | u_bus                | safety_error                          |
+Bus / sensor        | u_bus           | sensor_sel         | u_sensor             | bus_sel                               |
+Bus / sensor        | u_bus           | slave_addr         | u_sensor             | bus_addr                              | Shared bus distributed to selected slave
+Bus / sensor        | u_bus           | slave_wdata        | u_sensor             | bus_wdata                             | Shared bus distributed to selected slave
+Bus / sensor        | u_bus           | slave_wstrb        | u_sensor             | bus_wstrb                             | Shared bus distributed to selected slave
+Bus / sensor        | u_bus           | slave_we           | u_sensor             | bus_we                                | Shared bus distributed to selected slave
+Bus / sensor        | u_sensor        | bus_rdata          | u_bus                | sensor_rdata                          |
+Bus / sensor        | u_sensor        | bus_ready          | u_bus                | sensor_ready                          |
+Bus / sensor        | u_sensor        | bus_error          | u_bus                | sensor_error                          |
+Bus / sram          | u_bus           | sram_sel           | u_sram               | bus_sel                               |
+Bus / sram          | u_bus           | slave_addr         | u_sram               | bus_addr                              | Shared bus distributed to selected slave
+Bus / sram          | u_bus           | slave_wdata        | u_sram               | bus_wdata                             | Shared bus distributed to selected slave
+Bus / sram          | u_bus           | slave_wstrb        | u_sram               | bus_wstrb                             | Shared bus distributed to selected slave
+Bus / sram          | u_bus           | slave_we           | u_sram               | bus_we                                | Shared bus distributed to selected slave
+Bus / sram          | u_sram          | bus_rdata          | u_bus                | sram_rdata                            |
+Bus / sram          | u_sram          | bus_ready          | u_bus                | sram_ready                            |
+Bus / sram          | u_sram          | bus_error          | u_bus                | sram_error                            |
+Bus / timer         | u_bus           | timer_sel          | u_timer              | bus_sel                               |
+Bus / timer         | u_bus           | slave_addr         | u_timer              | bus_addr                              | Shared bus distributed to selected slave
+Bus / timer         | u_bus           | slave_wdata        | u_timer              | bus_wdata                             | Shared bus distributed to selected slave
+Bus / timer         | u_bus           | slave_wstrb        | u_timer              | bus_wstrb                             | Shared bus distributed to selected slave
+Bus / timer         | u_bus           | slave_we           | u_timer              | bus_we                                | Shared bus distributed to selected slave
+Bus / timer         | u_timer         | bus_rdata          | u_bus                | timer_rdata                           |
+Bus / timer         | u_timer         | bus_ready          | u_bus                | timer_ready                           |
+Bus / timer         | u_timer         | bus_error          | u_bus                | timer_error                           |
+Bus / uart          | u_bus           | uart_sel           | u_uart               | bus_sel                               |
+Bus / uart          | u_bus           | slave_addr         | u_uart               | bus_addr                              | Shared bus distributed to selected slave
+Bus / uart          | u_bus           | slave_wdata        | u_uart               | bus_wdata                             | Shared bus distributed to selected slave
+Bus / uart          | u_bus           | slave_wstrb        | u_uart               | bus_wstrb                             | Shared bus distributed to selected slave
+Bus / uart          | u_bus           | slave_we           | u_uart               | bus_we                                | Shared bus distributed to selected slave
+Bus / uart          | u_uart          | bus_rdata          | u_bus                | uart_rdata                            |
+Bus / uart          | u_uart          | bus_ready          | u_bus                | uart_ready                            |
+Bus / uart          | u_uart          | bus_error          | u_bus                | uart_error                            |
+Bus / wheel         | u_bus           | wheel_sel          | u_wheel              | bus_sel                               |
+Bus / wheel         | u_bus           | slave_addr         | u_wheel              | bus_addr                              | Shared bus distributed to selected slave
+Bus / wheel         | u_bus           | slave_wdata        | u_wheel              | bus_wdata                             | Shared bus distributed to selected slave
+Bus / wheel         | u_bus           | slave_wstrb        | u_wheel              | bus_wstrb                             | Shared bus distributed to selected slave
+Bus / wheel         | u_bus           | slave_we           | u_wheel              | bus_we                                | Shared bus distributed to selected slave
+Bus / wheel         | u_wheel         | bus_rdata          | u_bus                | wheel_rdata                           |
+Bus / wheel         | u_wheel         | bus_ready          | u_bus                | wheel_ready                           |
+Bus / wheel         | u_wheel         | bus_error          | u_bus                | wheel_error                           |
+UART sensor         | u_uart          | rx_data[7:0]       | u_sensor             | rx_data[7:0]                          |
+UART sensor         | u_uart          | rx_valid           | u_sensor             | rx_valid                              |
+Sensor to collision | u_sensor        | vehicle_speed      | u_collision          | vehicle_speed                         |
+Sensor to collision | u_sensor        | object_distance    | u_collision          | object_distance                       |
+Sensor to collision | u_sensor        | object_speed       | u_collision          | object_speed                          |
+Sensor to collision | u_sensor        | object_lane        | u_collision          | object_lane                           |
+Sensor to collision | u_sensor        | object_valid       | u_collision          | object_valid                          |
+Sensor to slip      | u_sensor        | vehicle_speed      | u_wheel              | vehicle_speed                         |
+Sensor to slip      | u_sensor        | wheel_speeds       | u_wheel              | wheel_speeds                          |
+Safety inputs       | u_collision     | collision_warning  | u_safety             | collision_warning                     |
+Safety inputs       | u_wheel         | slip_warning       | u_safety             | slip_warning                          |
+Safety inputs       | u_sensor        | valid_packet       | u_safety             | sensor_update (internal health block) |
+Interrupts          | u_timer         | timer_irq          | u_cpu                | timer_irq                             |
+Interrupts          | u_safety        | fault_irq          | u_cpu                | fault_irq                             |
+Board GPIO          | basys3_top      | sw[15:0]           | u_gpio               | gpio_in[15:0]                         |
+Board UART          | basys3_top      | uart_rx            | u_uart               | serial_rx                             |
+Board UART          | u_uart          | serial_tx          | basys3_top           | uart_tx                               |
+LED status          | u_gpio          | gpio_out[15:0]     | automotive_soc       | LED output selection                  |
+LED status          | u_safety        | warning_mask[15:0] | automotive_soc       | LED output selection                  |
+LED status          | automotive_soc  | led[15:0]          | basys3_top           | led[15:0]                             |
